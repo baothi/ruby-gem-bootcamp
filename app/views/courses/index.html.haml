@@ -6,9 +6,10 @@
   .accordion-item
     .col-2
       .form-inline
-        = search_form_for @q do |f|
+        -# = search_form_for @q do |f|
+        = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
           = f.label :title
-          = f.search_field :title_cont,  placeholder: 'title', class: 'form-control form-control-sm'
+          = f.search_field :title_or_short_description_cont,  placeholder: 'title', class: 'form-control form-control-sm'
           = f.label :description
           = f.search_field :short_description_cont, placeholder: 'short description', class: 'form-control form-control-sm'
           -# = f.search_field :language_cont, placeholder: 'language', class: 'form-control form-control-sm'

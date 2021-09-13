@@ -17,6 +17,9 @@
           = link_to new_course_path, class: "nav-link #{'active fw-bold' if current_page?(new_course_path)}" do
             .fa.fa-plus
             New Courses
+          = link_to users_path, class: "nav-link #{'active fw-bold' if current_page?(users_path)}" do
+            .fa.fa-user
+            User
         %form-inline.my-2.my-lg-0
           = form_tag(courses_path, method: :get) do
             .input-group 

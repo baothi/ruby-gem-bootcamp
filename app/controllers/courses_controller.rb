@@ -6,7 +6,9 @@ class CoursesController < ApplicationController
     if params[:title]
       @courses = Course.where('title ILIKE ?', "%#{params[:title]}%")
     else
-      @courses = Course.all
+      #@courses = Course.all
+      @q = Course.ransack(params[:q])
+      @courses = @q.result.includes(:user)
     end
   end
 
@@ -25,6 +27,7 @@ class CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
+    debugger
     @course = Course.new(course_params)
     @course.user = current_user
 
@@ -69,6 +72,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description)
+      params.require(:course).permit(:title, :description, :short_description, :language, :price, :level)
     end
 end
